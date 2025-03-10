@@ -3,89 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enregistrement des Professeurs et Cours</title>
-    
-    <!-- Inclure Tailwind CSS -->
+    <title>Enregistrement Enseignant</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Inclure Firebase (une seule fois, ici dans <head>) -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
 </head>
 <body class="bg-gray-100 font-sans antialiased">
-    <div class="max-w-4xl mx-auto p-6">
-        <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">Enregistrer un Enseignant</h1>
-        
-        <!-- Formulaire pour Ajouter un Enseignant -->
-        <form id="enseignantForm" class="bg-white p-6 rounded-lg shadow-lg mb-6">
-            <div class="mb-4">
-                <label for="name" class="block text-lg font-semibold text-gray-700">Nom de l'enseignant</label>
-                <input type="text" id="name" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-            <div class="mb-4">
-                <label for="email" class="block text-lg font-semibold text-gray-700">Email</label>
-                <input type="email" id="email" required readonly class="w-full p-3 mt-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-500">
-            </div>
-            <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600">Ajouter l'Enseignant</button>
-        </form>
 
-        <!-- Formulaire pour Ajouter une Option -->
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Ajouter une Option</h2>
-        <form id="optionForm" class="bg-white p-6 rounded-lg shadow-lg mb-6">
-            <div class="mb-4">
-                <label for="option" class="block text-lg font-semibold text-gray-700">Choisir une Option</label>
-                <select id="option" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="électricité">Électricité</option>
-                    <option value="nutrition">Nutrition</option>
-                    <option value="sociale">Sociale</option>
-                    <option value="coupe_et_couture">Coupe et Couture</option>
-                </select>
-            </div>
-            <button type="submit" class="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600">Ajouter l'Option</button>
-        </form>
-
-        <!-- Formulaire pour Ajouter une Classe -->
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Ajouter une Classe</h2>
-        <form id="classeForm" class="bg-white p-6 rounded-lg shadow-lg mb-6">
-            <div class="mb-4">
-                <label for="classe" class="block text-lg font-semibold text-gray-700">Choisir une Classe</label>
-                <select id="classe" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="7">7ème (Éducation de base)</option>
-                    <option value="8">8ème (Éducation de base)</option>
-                    <option value="1">1ère (Humanités)</option>
-                    <option value="2">2ème (Humanités)</option>
-                    <option value="3">3ème (Humanités)</option>
-                    <option value="4">4ème (Humanités)</option>
-                </select>
-            </div>
-            <button type="submit" class="w-full bg-purple-500 text-white p-3 rounded-lg hover:bg-purple-600">Ajouter la Classe</button>
-        </form>
-
-        <!-- Formulaire pour Ajouter un Cours -->
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Ajouter un Cours</h2>
-        <form id="coursForm" class="bg-white p-6 rounded-lg shadow-lg">
-            <div class="mb-4">
-                <label for="cours" class="block text-lg font-semibold text-gray-700">Nom du Cours</label>
-                <input type="text" id="cours" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-            <div class="mb-4">
-                <label for="optionCours" class="block text-lg font-semibold text-gray-700">Option</label>
-                <select id="optionCours" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="électricité">Électricité</option>
-                    <option value="nutrition">Nutrition</option>
-                    <option value="sociale">Sociale</option>
-                    <option value="coupe_et_couture">Coupe et Couture</option>
-                </select>
-            </div>
-            <button type="submit" class="w-full bg-yellow-500 text-white p-3 rounded-lg hover:bg-yellow-600">Ajouter le Cours</button>
-        </form>
-    </div>
+<div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">Ajouter un Enseignant et ses Classes</h1>
     
-    <div id="errorContainer" style="position: fixed; top: 0; left: 0; width: 100%; background-color: rgba(255, 0, 0, 0.8); color: white; padding: 10px; font-family: Arial, sans-serif; font-size: 14px; z-index: 1000; display: none;">
-    <strong>Erreur JavaScript :</strong> <span id="errorMessage"></span>
+    <!-- Formulaire pour Ajouter un Enseignant et ses Classes -->
+    <form id="enseignantForm" class="bg-white p-6 rounded-lg shadow-lg mb-6">
+        <div class="mb-4">
+            <label for="name" class="block text-lg font-semibold text-gray-700">Nom de l'enseignant</label>
+            <input type="text" id="name" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        
+        <!-- Classe 1 et Matières -->
+        <div class="mb-4">
+            <label for="classe1" class="block text-lg font-semibold text-gray-700">Choisir la Première Classe</label>
+            <select id="classe1" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="7">7ème (Éducation de base)</option>
+                <option value="8">8ème (Éducation de base)</option>
+                <option value="1">1ère (Humanités)</option>
+                <option value="2">2ème (Humanités)</option>
+                <option value="3">3ème (Humanités)</option>
+                <option value="4">4ème (Humanités)</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="matiere1" class="block text-lg font-semibold text-gray-700">Choisir la Matière pour la Classe 1</label>
+            <select id="matiere1" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="maths">Mathématiques</option>
+                <option value="physique">Physique</option>
+                <option value="chimie">Chimie</option>
+                <option value="francais">Français</option>
+            </select>
+        </div>
+
+        <!-- Classe 2 et Matières -->
+        <div class="mb-4">
+            <label for="classe2" class="block text-lg font-semibold text-gray-700">Choisir la Deuxième Classe</label>
+            <select id="classe2" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="7">7ème (Éducation de base)</option>
+                <option value="8">8ème (Éducation de base)</option>
+                <option value="1">1ère (Humanités)</option>
+                <option value="2">2ème (Humanités)</option>
+                <option value="3">3ème (Humanités)</option>
+                <option value="4">4ème (Humanités)</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="matiere2" class="block text-lg font-semibold text-gray-700">Choisir la Matière pour la Classe 2</label>
+            <select id="matiere2" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="maths">Mathématiques</option>
+                <option value="physique">Physique</option>
+                <option value="chimie">Chimie</option>
+                <option value="francais">Français</option>
+            </select>
+        </div>
+
+        <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600">Ajouter l'Enseignant</button>
+    </form>
 </div>
 
-    <!-- Ajoutez votre fichier JS après Firebase -->
-    <script src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
