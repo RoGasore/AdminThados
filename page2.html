@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Enseignant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+
+<div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">Ajouter un Enseignant</h1>
+
+    <!-- Formulaire pour Ajouter un Enseignant -->
+    <form id="enseignantForm" class="bg-white p-6 rounded-lg shadow-lg mb-6">
+        <div class="mb-4">
+            <label for="enseignantNom" class="block text-lg font-semibold text-gray-700">Nom de l'Enseignant</label>
+            <input type="text" id="enseignantNom" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="mb-4">
+            <label for="enseignantEmail" class="block text-lg font-semibold text-gray-700">Email</label>
+            <input type="email" id="enseignantEmail" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="mb-4">
+            <label for="enseignantMatiere" class="block text-lg font-semibold text-gray-700">Matière à Enseigner</label>
+            <input type="text" id="enseignantMatiere" required class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600">Ajouter l'Enseignant</button>
+    </form>
+</div>
+
+<script src="enseignantApp.js"></script>
+</body>
+</html>
